@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:github_repo_search/github_repo.dart';
 import 'package:github_repo_search/github_response.dart';
+import 'package:github_repo_search/text_form.dart';
 
 class GithubRepoSearchScreen extends StatefulWidget {
   const GithubRepoSearchScreen({Key? key, required this.title})
@@ -33,17 +34,7 @@ class _GithubRepoSearchScreenState extends State<GithubRepoSearchScreen> {
         children: [
           Column(
             children: [
-              Container(
-                margin: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-                child: TextField(
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.search),
-                        hintText: 'repository name',
-                        labelText: "search"),
-                    onSubmitted: (text) {
-                      load(text);
-                    }),
-              ),
+              SearchTextForm((text) => load),
               Expanded(
                 child: Scrollbar(
                   child: ListView.builder(
