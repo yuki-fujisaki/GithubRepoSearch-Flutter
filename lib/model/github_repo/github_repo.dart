@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:github_repo_search/github_response.dart';
+import 'package:github_repo_search/model/github_response/github_response.dart';
 
 class GithubRepo {
   final String fullName;
