@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:github_repo_search/github_repo.dart';
+import 'package:github_repo_search/github_repo_list.dart';
 import 'package:github_repo_search/github_response.dart';
-import 'package:github_repo_search/text_form.dart';
+import 'package:github_repo_search/search_text_form.dart';
 
 class GithubRepoSearchScreen extends StatefulWidget {
   const GithubRepoSearchScreen({Key? key, required this.title})
@@ -33,41 +34,7 @@ class _GithubRepoSearchScreenState extends State<GithubRepoSearchScreen> {
       body: Stack(
         children: [
           Column(
-            children: [
-              SearchTextForm((text) => load),
-              Expanded(
-                child: Scrollbar(
-                  child: ListView.builder(
-                    itemBuilder: (BuildContext context, int index) {
-                      final githubRepo = _response!.items[index];
-                      return ListTile(
-                        leading: Container(
-                          padding: const EdgeInsets.all(4.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: Image.network(
-                              githubRepo.owner.avatarUrl,
-                              width: 32,
-                              height: 32,
-                            ),
-                          ),
-                        ),
-                        title: Text(githubRepo.fullName),
-                        subtitle: Row(
-                          children: [
-                            const Icon(Icons.star_border),
-                            const SizedBox(width: 4),
-                            Text(githubRepo.stargazersCount.toString())
-                          ],
-                        ),
-                        // onTap: () {},
-                      );
-                    },
-                    itemCount: _response?.items.length ?? 0,
-                  ),
-                ),
-              )
-            ],
+            children: [SearchTextForm(load), GithubRepoList(_response)],
           ),
         ],
       ),
