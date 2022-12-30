@@ -1,4 +1,4 @@
-import 'package:github_repo_search/github_repo.dart';
+import 'package:github_repo_search/model/github_repo/github_repo.dart';
 
 class GithubResponse {
   final List<GithubRepo> items;

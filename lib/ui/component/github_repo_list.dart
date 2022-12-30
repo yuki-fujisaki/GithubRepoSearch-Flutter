@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:github_repo_search/github_response.dart';
+import 'package:github_repo_search/model/github_response/github_response.dart';
 
 Widget GithubRepoList(GithubResponse? response) {
   return Expanded(
