@@ -1,14 +1,15 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:github_repo_search/model/github_repo/github_repo.dart';
 
-class GithubResponse {
-  final List<GithubRepo> items;
+part 'github_response.freezed.dart';
+part 'github_response.g.dart';
 
-  GithubResponse(this.items);
+@freezed
+class GithubResponse with _$GithubResponse {
+  const factory GithubResponse({
+    @JsonKey(name: 'items') required List<GithubRepo> items,
+  }) = _GithubResponse;
 
-  GithubResponse.fromJson(Map<String, dynamic> json)
-      : items = json['items']
-            .map<GithubRepo>((i) => GithubRepo.fromJson(i))
-            .toList();
-
-  Map<String, dynamic> toJson() => {'items': items};
+  factory GithubResponse.fromJson(Map<String, dynamic> json) =>
+      _$GithubResponseFromJson(json);
 }
