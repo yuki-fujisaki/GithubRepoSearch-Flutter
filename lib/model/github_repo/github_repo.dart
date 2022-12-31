@@ -1,51 +1,27 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:github_repo_search/model/github_response/github_response.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class GithubRepo {
-  final String fullName;
-  final int stargazersCount;
-  final String htmlUrl;
-  final GithubRepoOwner owner;
+part 'github_repo.freezed.dart';
+part 'github_repo.g.dart';
 
-  GithubRepo(this.fullName, this.stargazersCount, this.htmlUrl, this.owner);
+@freezed
+class GithubRepo with _$GithubRepo {
+  factory GithubRepo({
+    @JsonKey(name: 'full_name') required String fullName,
+    @JsonKey(name: 'stargazers_count') required int stargazersCount,
+    @JsonKey(name: 'html_url') required String htmlUrl,
+    @JsonKey(name: 'owner') required GithubRepoOwner owner,
+  }) = _GithubRepo;
 
-  GithubRepo.fromJson(Map<String, dynamic> json)
-      : fullName = json['full_name'],
-        stargazersCount = json['stargazers_count'],
-        htmlUrl = json['html_url'],
-        // jsonでownerの中にavatar_urlがあるため別クラスでパースする
-        owner = GithubRepoOwner.fromJson(json['owner']);
-
-  Map<String, dynamic> toJson() => {
-        'full_name': fullName,
-        'stargazers_count': stargazersCount,
-        'html_url': htmlUrl,
-        // jsonでownerの中にavatar_urlがあるため別クラスでパースする
-        'owner': owner.toJson()
-      };
+  factory GithubRepo.fromJson(Map<String, dynamic> json) =>
+      _$GithubRepoFromJson(json);
 }
 
-// avatar_urlパース用クラス
-class GithubRepoOwner {
-  final String avatarUrl;
+@freezed
+class GithubRepoOwner with _$GithubRepoOwner {
+  factory GithubRepoOwner({
+    @JsonKey(name: 'avatar_url') required String avatarUrl,
+  }) = _GithubRepoOwner;
 
-  GithubRepoOwner(this.avatarUrl);
-
-  GithubRepoOwner.fromJson(Map<String, dynamic> json)
-      : avatarUrl = json['avatar_url'];
-
-  Map<String, dynamic> toJson() => {'avatar_url': avatarUrl};
-}
-
-class GithubRepository {
-  Future<GithubResponse> fetch(String query) async {
-    try {
-      final response = await http.get(
-          Uri.https('api.github.com', '/search/repositories', {'q': query}));
-      return GithubResponse.fromJson(jsonDecode(response.body));
-    } catch (error) {
-      throw Exception(error.toString());
-    }
-  }
+  factory GithubRepoOwner.fromJson(Map<String, dynamic> json) =>
+      _$GithubRepoOwnerFromJson(json);
 }
