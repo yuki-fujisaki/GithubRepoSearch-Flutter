@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:github_repo_search/model/github_repo/github_repo.dart';
+import 'package:github_repo_search/api/github_repository/github_repository.dart';
 import 'package:github_repo_search/ui/component/github_repo_list.dart';
 import 'package:github_repo_search/model/github_response/github_response.dart';
 import 'package:github_repo_search/ui/component/search_text_form.dart';
