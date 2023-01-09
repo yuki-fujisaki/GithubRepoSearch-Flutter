@@ -6,13 +6,6 @@
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![simulator_screenshot_F8EF3C7A-2078-4F05-B53A-2BDA67DE9937](https://user-images.githubusercontent.com/77733479/210130794-ed25fb2e-2dd3-427c-800a-647538b4c45f.png) | ![Simulator Screen Shot - iPhone 14 Pro Max - 2022-12-31 at 17 38 06](https://user-images.githubusercontent.com/77733479/210130705-8cf482f4-94fe-43ca-8220-ad27677a7682.png) |
 
-## 検証方法
-
-#### ソースコードを clone
-
-```bash
-git clone https://github.com/yuki-fujisaki/GithubRepoSearch-Flutter.git
-```
 
 ## 技術スタック
 
@@ -33,6 +26,9 @@ git clone https://github.com/yuki-fujisaki/GithubRepoSearch-Flutter.git
 ## パッケージ
 
 - [flutter_riverpod](https://pub.dev/packages/flutter_riverpod)
+- [freezed](https://pub.dev/packages/freezed)
+- [build_runner](https://pub.dev/packages/build_runner)
+- [http](https://pub.dev/packages/http)
 
 ## フォルダ構成
 
@@ -51,9 +47,6 @@ git clone https://github.com/yuki-fujisaki/GithubRepoSearch-Flutter.git
             └── state
 ```
 
-### ファイル分割の方針
-
-基本的に **関心事** 毎にファイルを分割しています。例えば、Controller と State を別々のファイルに分けることはしません。ファイル名は **関心事.dart** とします。ファイル名 = クラス名とはしません。
 
 ## 環境
 
